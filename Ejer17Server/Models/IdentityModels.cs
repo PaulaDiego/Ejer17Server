@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System;
 
 namespace Ejer17Server.Models
 {
@@ -20,6 +21,7 @@ namespace Ejer17Server.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        [ThreadStatic] public static ApplicationDbContext applicationDbContext;
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -29,5 +31,7 @@ namespace Ejer17Server.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Ejer17Server.Persona> Personas { get; set; }
     }
 }

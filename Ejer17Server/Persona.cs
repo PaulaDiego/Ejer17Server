@@ -7,6 +7,7 @@ namespace Ejer17Server
 {
     public class Persona
     {
+        public long Id { get; set; }
         public String Nombre {get;set;}
         public String Apellidos { get; set; }
         public int Edad { get; set; }
